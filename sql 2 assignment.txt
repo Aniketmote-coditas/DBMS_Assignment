@@ -1,0 +1,114 @@
+1 :-
+
+mysql> create table customer(cus_id int primary key auto_increment, cust_name varchar(50),product varchar(50), quantity int, total_price int);
+
+
+2 :-
+mysql> insert into customer(cust_name, product, quantity, total_price) values("raj", "box",50, 800);
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select * from customer;
++--------+-----------+---------+----------+-------------+
+| cus_id | cust_name | product | quantity | total_price |
++--------+-----------+---------+----------+-------------+
+|      1 | anik      | pen     |       10 |         100 |
+|      2 | mukesh    | paper   |       90 |         200 |
+|      3 | sashi     | pencil  |       80 |         400 |
+|      4 | yash      | scale   |       60 |         300 |
+|      5 | raj       | box     |       50 |         800 |
++--------+-----------+---------+----------+-------------+
+5 rows in set (0.00 sec)
+
+3 :-
+
+
+mysql> alter table customer add price_per_qnty int;
+Query OK, 0 rows affected (0.13 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc customer;
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| cus_id         | int         | NO   | PRI | NULL    | auto_increment |
+| cust_name      | varchar(50) | YES  |     | NULL    |                |
+| product        | varchar(50) | YES  |     | NULL    |                |
+| quantity       | int         | YES  |     | NULL    |                |
+| total_price    | int         | YES  |     | NULL    |                |
+| price_per_qnty | int         | YES  |     | NULL    |                |
++----------------+-------------+------+-----+---------+-----------
+
+4 :-
+
+mysql> create view cus as select cus_id, cust_name from customer;
+Query OK, 0 rows affected (0.16 sec)
+
+mysql> select * from cus;
++--------+-----------+
+| cus_id | cust_name |
++--------+-----------+
+|      1 | anik      |
+|      2 | mukesh    |
+|      3 | sashi     |
+|      4 | yash      |
+|      5 | raj       |
++--------+-----------+
+
+5 :-
+
+mysql> alter view cus as select cus_id, product, total_price from customer;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> select * from cus;
++--------+---------+-------------+
+| cus_id | product | total_price |
++--------+---------+-------------+
+|      1 | pen     |         100 |
+|      2 | paper   |         200 |
+|      3 | pencil  |         400 |
+|      4 | scale   |         300 |
+|      5 | box     |         800 |
++--------+---------+-------------+
+5 rows in set (0.00 sec)
+
+6:-
+
+mysql> drop view cus;
+Query OK, 0 rows affected (0.05 sec)
+
+7:-
+
+mysql> create index ind on customer(cust_name);
+Query OK, 0 rows affected (0.20 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+8 :-
+
+mysql> drop index ind on customer;
+Query OK, 0 rows affected (0.08 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+9:-
+
+mysql> desc customer;
++----------------+-------------+------+-----+---------+----------------+
+| Field          | Type        | Null | Key | Default | Extra          |
++----------------+-------------+------+-----+---------+----------------+
+| cus_id         | int         | NO   | PRI | NULL    | auto_increment |
+| cust_name      | varchar(50) | YES  |     | NULL    |                |
+| product        | varchar(50) | YES  |     | NULL    |                |
+| quantity       | int         | YES  |     | NULL    |                |
+| total_price    | int         | YES  |     | NULL    |                |
+| price_per_qnty | int         | YES  |     | NULL    |                |
++----------------+-------------+------+-----+---------+----------------+
+6 rows in set (0.00 sec)
+
+10:-
+
+mysql> alter table customer rename custo;
+Query OK, 0 rows affected (0.37 sec)
+
+11:-
+
+mysql> drop table custo;
+Query OK, 0 rows affected (0.12 sec)
